@@ -53,11 +53,7 @@ export default {
 
     const {value: email, errorMassage: emailError, handleBlur: emailBlur} = useField(
       'email',
-      yup
-        .string()
-        .trim()
-        .required('Указать email')
-        .email('Ввести правильный email')
+
       )
 
     const {value: password, errorMassage: passwordError, handleBlur: passwordBlur} = useField(

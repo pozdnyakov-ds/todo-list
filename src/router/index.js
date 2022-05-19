@@ -1,4 +1,3 @@
-import { nextTick } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '../store'
 import HomeView from '../views/HomeView.vue'

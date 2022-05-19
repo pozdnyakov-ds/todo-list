@@ -1,4 +1,6 @@
+import { nextTick } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '../store'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
@@ -9,7 +11,8 @@ const router = createRouter({
       name: 'Начало',
       component: HomeView,
       meta: {
-        layout: 'main'
+        layout: 'main',
+        auth: true
       }
     },
     {
@@ -17,7 +20,8 @@ const router = createRouter({
       name: 'Помощь',
       component: () => import('../views/HelpView.vue'),
       meta: {
-        layout: 'main'
+        layout: 'main',
+        auth: true
       }
     },
     {
@@ -25,10 +29,22 @@ const router = createRouter({
       name: 'Авторизация',
       component: () => import('../views/AuthView.vue'),
       meta: {
-        layout: 'auth'
+        layout: 'auth',
+        auth: false
       }
     },
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  const requireAuth = to.meta.auth
+  if (requireAuth && store.getters['auth/isAuthenticated']) {
+
+  } else if (requireAuth && !store.getters['auth/isAuthenticated']) {
+    nextTick('/auth?message=auth')
+  } else {
+    next()
+  }
 })
 
 export default router

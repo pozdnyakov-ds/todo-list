@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { useStore } from 'vuex'
 import { useLoginForm } from '../use/login-form'
 
 export default {

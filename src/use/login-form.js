@@ -21,9 +21,13 @@ export function useLoginForm() {
     const {handleSubmit, isSubmitting, submitCount} = useForm()
 
     const onSubmit = handleSubmit(async values => {
-        console.log("Form data: ", values)
+      //try {
+        console.log("Form data: ", values, store)
         await store.dispatch('auth/login', values)
         router.push('/')
+      //} catch(e) {
+      //}
+      
     })
 
     watch(isTooManyAttempts, val => {

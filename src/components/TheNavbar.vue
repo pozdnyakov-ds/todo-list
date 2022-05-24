@@ -27,7 +27,7 @@ import { useStore } from 'vuex'
             const store = useStore
             return {
                 logout: () => {
-                    store.commit('logout')
+                    store.commit('auth/logout')
                     router.push('/auth')
                 }
             }
